@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://jx17ksxrq5d8"]
+[gd_scene load_steps=4 format=3 uid="uid://jx17ksxrq5d8"]
 
 [ext_resource type="PackedScene" uid="uid://2rnoj0dbwglk" path="res://TileMapExterior.tscn" id="1_q1uoy"]
 [ext_resource type="PackedScene" uid="uid://bfjrt7km74fss" path="res://Personagem.tscn" id="2_yt6cw"]
+[ext_resource type="PackedScene" uid="uid://b3sjmrgl0noby" path="res://npc.tscn" id="3_64vbt"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMapLayer" parent="." instance=ExtResource("1_q1uoy")]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_yt6cw")]
+position = Vector2(8, 16)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("3_64vbt")]
+position = Vector2(30, 0)

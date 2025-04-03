@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Node2D
 
 var walk_speed = 4.0
 const TILE_SIZE = 16
@@ -54,3 +54,7 @@ func move(delta):
 		is_moving = false
 	else:
 		position = initial_position + (TILE_SIZE * input_direction * percent_move_to_next_tile)
+
+
+func _on_area_2d_up_body_entered(body: Node2D) -> void:
+	print("entrou fds")

@@ -22,9 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://pecg16q114ep" path="res://assets/mainCharacter/male/walk/walk_up(3).png" id="20_1116c"]
 [ext_resource type="Texture2D" uid="uid://65wec1ie74xj" path="res://assets/mainCharacter/male/walk/walk_up(4).png" id="21_fsrrb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wnkw"]
-size = Vector2(15, 20)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_6mdyt"]
 animations = [{
 "frames": [{
@@ -113,19 +110,48 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_jynr8")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vw2en"]
+size = Vector2(16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.5, 10)
-shape = SubResource("RectangleShape2D_6wnkw")
+[node name="CharacterBody2D" type="Node2D"]
+script = ExtResource("1_jynr8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(0, -2)
 scale = Vector2(1.07143, 0.952381)
 sprite_frames = SubResource("SpriteFrames_6mdyt")
 animation = &"walk_down"
-centered = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="Area2D_up" type="Area2D" parent="."]
+position = Vector2(0, -16)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_up"]
+shape = SubResource("RectangleShape2D_vw2en")
+
+[node name="Area2D_right" type="Area2D" parent="."]
+position = Vector2(16, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_right"]
+shape = SubResource("RectangleShape2D_vw2en")
+
+[node name="Area2D_left" type="Area2D" parent="."]
+position = Vector2(-16, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_left"]
+shape = SubResource("RectangleShape2D_vw2en")
+
+[node name="Area2D_down" type="Area2D" parent="."]
+position = Vector2(0, 16)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_down"]
+shape = SubResource("RectangleShape2D_vw2en")
+
+[connection signal="body_entered" from="Area2D_up" to="." method="_on_area_2d_up_body_entered"]
